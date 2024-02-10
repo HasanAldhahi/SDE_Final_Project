@@ -44,6 +44,8 @@ function CreatePost() {
             placeholder=" a bowl of soup that looks like a monster, knitted out of wool"
             value={form.name}
             handleSupriseMe={handleSupriseMe}
+            isSupriseMe
+            handleChange={handleChange}
           />
         </div>
       </form>

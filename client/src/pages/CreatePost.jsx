@@ -22,7 +22,7 @@ function CreatePost() {
   const generateImage = () => {};
 
   const handleSubmit = () => {};
-  const handleSupriseMe = () => {
+  const handleSurpriseMe = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
     setForm({ ...form, prompt: randomPrompt });
   };
@@ -47,14 +47,14 @@ function CreatePost() {
             handleChange={handleChange}
           />
           <FormField
-            LabelName="Prompt"
+            labelName="Prompt"
             type="text"
             name="Prompt"
             placeholder=" a bowl of soup that looks like a monster, knitted out of wool"
-            value={form.name}
-            handleSupriseMe={handleSupriseMe}
-            isSupriseMe
-            handleChange={handleChange}
+            value={form.prompt}
+            handleChange={handleSurpriseMe}
+            isSurpriseMe
+            handleSurpriseMe={handleSurpriseMe}
           />
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
             {form.photo ? (

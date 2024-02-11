@@ -15,6 +15,7 @@ const FormField = ({
       <label htmlFor={name} className="block text-sm font-medium text-gray-900">
         {labelName}
       </label>
+      {console.log(isSurpriseMe ? "true" : "false")}
       {isSurpriseMe && (
         <button
           type="button"

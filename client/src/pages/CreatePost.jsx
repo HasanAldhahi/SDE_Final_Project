@@ -24,6 +24,8 @@ function CreatePost() {
   const handleSubmit = () => {};
   const handleSurpriseMe = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
+    console.log("button was clicked");
+    console.log(randomPrompt);
     setForm({ ...form, prompt: randomPrompt });
   };
 

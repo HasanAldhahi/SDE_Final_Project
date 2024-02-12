@@ -11,15 +11,43 @@ function CreatePost() {
     name: "",
     prompt: "",
     photo: "",
+    dateList: "",
   });
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChangeName = (e) => {
+    console.log("this is the changed valeu ", e.target.value);
+    setForm({ ...form, name: e.target.value });
   };
 
-  const generateImage = () => {};
+  const handleChange = (e) => {
+    console.log("this is the changed valeu ", e.target.value);
+    setForm({ ...form, prompt: e.target.value });
+  };
+
+  const generateImage = async () => {
+    if (form.prompt) {
+      try {
+        setGeneratingImg(true);
+        const response = await fetch("http://localhost:8080/api/v1/dalle", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt: form.prompt }),
+        });
+        const data = await response.json();
+        setForm({ ...form, dataList: data });
+      } catch (error) {
+        alert("No results has been found! Try simpler Prompt");
+      } finally {
+        setGeneratingImg(false);
+      }
+    } else {
+      alert("Please enter Prompt");
+    }
+  };
 
   const handleSubmit = () => {};
   const handleSurpriseMe = () => {
@@ -46,7 +74,7 @@ function CreatePost() {
             name="name"
             placeholder="John Doe"
             value={form.name}
-            handleChange={handleChange}
+            handleChange={handleChangeName}
           />
           <FormField
             labelName="Prompt"
@@ -54,14 +82,15 @@ function CreatePost() {
             name="Prompt"
             placeholder=" a bowl of soup that looks like a monster, knitted out of wool"
             value={form.prompt}
-            handleChange={handleSurpriseMe}
+            handleChange={handleChange}
             isSurpriseMe
             handleSurpriseMe={handleSurpriseMe}
           />
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
-            {form.photo ? (
+            {console.log("ths si the photo that u were wanting it ")}
+            {form.dataList ? (
               <img
-                src={form.photo}
+                src={form.dataList.list[0].link}
                 alt={form.prompt}
                 className="w-full h-full object-contain"
               />

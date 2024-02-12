@@ -1,17 +1,15 @@
 import express from "express"
 import * as dotenv from 'dotenv'
 import {  OpenAI } from 'openai';
+import axios from 'axios';
 
 
 dotenv.config()
-
 const router = express.Router()
-const openai = new OpenAI({
-    apikey: process.env.OPENAI_API_KEY
-})
-
-
-
+// You need to pay 5$ for it 
+// const openai = new OpenAI({
+//     apikey: process.env.OPENAI_API_KEY
+// })
 
 //Routes
 router.route('/').get((req, res) => {
@@ -23,26 +21,33 @@ router.route('/').get((req, res) => {
 router.route('/').post(async (req, res) => {
     try{
         const {prompt} = req.body;
-        const aiResponse = await openai.createImage({
-            prompt,
-            n:1,
-            size: '1024x1024',
-            response_format: 'b64_json',
+        console.log("hellllllllllllo")
+        console.log(prompt)
+         const response = await axios.get('https://www.googleapis.com/customsearch/v1', {
+           
+         params: {
+                key: process.env.GOOGLE_API_KEY,
+                q: prompt,
+                cx:"f1a5f1a5449b44cc6",
+                searchType: 'image', // Example: to search for images
+                // Add other parameters as needed
+            }})
+        // console.log(response.data.items)
+        let myList = []
+        for(let i = 0; i< 4; i++){
+            myList.push(response.data.items[i])
 
-        })
-        const image = aiResponse.data.data[0].b64_json;
+        }
+        res.status(200).json({list: myList});
+    }
 
-        res.status(200).json({photo:image});
-    } 
     catch(error) {
+        console.log("thsnusner error: ")
         console.log(error)
-        res.status(500).send(error?.response.data.error.message)
-
+        console.log("end of the error")
+        res.status(500).send(error?.response)
     }
 })
-
-
-
 export default router
 
  

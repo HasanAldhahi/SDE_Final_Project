@@ -59,12 +59,18 @@ function CreatePost() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify({
+            name: form.name,
+            prompt: form.prompt,
+            dataList: form.dataList,
+          }),
         });
-        await response.json();
+        console.log(response.json());
+        // await response.json();
+        alert("Success");
         navigate("/");
       } catch (err) {
-        alert("error ");
+        alert("error ", err);
       } finally {
         setLoading(false);
       }

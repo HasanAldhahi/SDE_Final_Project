@@ -49,7 +49,29 @@ function CreatePost() {
     }
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (form.prompt && form.dataList) {
+      setLoading(true);
+      try {
+        const response = await fetch("http://localhost:8080/api/v1/post", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+        await response.json();
+        navigate("/");
+      } catch (err) {
+        alert("error ");
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      alert("Please enter a prompt to generate an image");
+    }
+  };
   const handleSurpriseMe = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
     console.log("button was clicked");
@@ -66,7 +88,7 @@ function CreatePost() {
           share them with the community
         </p>
       </div>
-      <form className=" mt-16 max-w-3xl " onSubmit={{ handleSubmit }}>
+      <form className=" mt-16 max-w-3xl " onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
           <FormField
             LabelName="Your name"
@@ -129,6 +151,7 @@ function CreatePost() {
             type="submit"
             className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
+            {console.log("this is for loading", loading)}
             {loading ? "Sharing..." : "Share with the Community"}
           </button>
         </div>

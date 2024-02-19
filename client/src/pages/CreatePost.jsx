@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { preview } from "../assets";
 import { getRandomPrompt } from "../utils";
+import {Link } from "react-router-dom"
 
 import { FormField, Loader } from "../components";
 
@@ -146,6 +147,10 @@ function CreatePost() {
           >
             {generatingImg ? "Generating..." : "Generate"}
           </button>
+          <Link to= "/Model"
+            className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md">
+            Swap the Face with the generated image
+            </Link>
         </div>
 
         <div className="mt-10">
@@ -153,13 +158,13 @@ function CreatePost() {
             ** Once you have created the image you want, you can share it with
             others in the community **
           </p>
-          <button
+          {/* <button
             type="submit"
             className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
             {console.log("this is for loading", loading)}
             {loading ? "Sharing..." : "Share with the Community"}
-          </button>
+          </button> */}
         </div>
       </form>
     </section>

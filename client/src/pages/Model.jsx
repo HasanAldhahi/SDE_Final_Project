@@ -6,25 +6,24 @@ import { fetchform } from "../Redux/googleGenerated/formSlice";
 import { Card } from "../components";
 import { setClickedDiv } from "../Redux/googleGenerated/formSlice";
 import { client } from "@gradio/client";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import Buffer from "buffer";
 
 const Model = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { dataList, divID, status } = useSelector((state) => {
     // console.log(state);
-    console.log("this is from the redux");
-    console.log(state.form.dataList.data);
 
     return state.form;
   });
-
   useEffect(() => {
     dispatch(fetchform());
   }, []);
 
   const RenderCards = ({ data, title }) => {
-    console.log("this is allPosts ", status);
-    // console.log("this is the data array", data.data[0]);
-
     if (status === "succeeded") {
       return data.data.map((post) => <Card key={post._id} {...post}></Card>);
     }
@@ -35,11 +34,37 @@ const Model = () => {
     );
   };
 
-  const [file, setFile] = useState();
+  const [image, setImage] = useState();
+  // const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState();
-  function handleChange(e) {
+  const preset_key = "privateShka";
+  const cloud_name = "dhpq1wxvf";
+  const [file_source, setFile_source] = useState();
+  const [file_target, setFile_target] = useState();
+
+  function handleFileChange(e) {
     console.log(e.target.files);
-    setFile(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    setFile_source(file);
+    console.log(file_source);
+
+    console.log("this is the file uploaded hasan", file);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", preset_key);
+    axios
+      .post(
+        `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+        formData
+      )
+      .then((res) => setImage(res.data.secure_url))
+      .catch((err) => console.log("cloudinary error " + err));
+  }
+
+  function handleTargetImage(e) {
+    console.log(e.target.files);
+    const file = e.target.files[0];
+    setFile_target(file);
   }
 
   const handleGenerate = async (e) => {
@@ -47,51 +72,71 @@ const Model = () => {
     console.log("we are inside generate");
     console.log(dataList.data);
     const dataWithRightID = dataList.data.filter((data) => data._id === divID);
-    const sourcePhoto = dataWithRightID[0].dataList[0].link;
+    const sourcePhoto = dataWithRightID[0]?.dataList[0].link;
     console.log("1");
     console.log("this is the source photo");
     console.log(sourcePhoto);
-    console.log("this is the file u uploaded ", file);
-
-    if (file && divID) {
+    console.log("this is the file u uploaded ", image);
+    if (image && divID) {
+      console.log("we are inside generating the output file");
       setLoading(true);
+
       try {
-        const source = await sourcePhoto.blob();
-        const file = await file.blob();
+        const response1 = await fetch(image, {
+          headers: { "content-type": "multipart/form-data" },
+        });
+        const sourceBlob = await response1.blob();
+        console.log("finished with blob 1", sourceBlob);
+
+        const response2 = await fetch(sourcePhoto, {
+          headers: { "content-type": "multipart/form-data" },
+        });
+        const targetBlob = await response2.blob();
+        console.log("finished with blob 2", targetBlob);
+
+        // const result = await handler(blob);
+        // const source = await sourcePhoto.blob();
+        // const file = await file.blob();
         const app = await client(
           "https://felixrosberg-face-swap.hf.space/--replicas/cjapv/"
         );
-        const result = await app.predict("/run_inference", [
-          file, // blob in 'Target' Image component
-          source, // blob in 'Source' Image component
-          0, // number (numeric value between 0 and 100) in 'Anonymization ratio (%)' Slider component
-          0, // number (numeric value between 0 and 100) in 'Adversarial defense ratio (%)' Slider component
-          ["Compare"], // undefined  in 'Mode' Checkboxgroup component
-        ]);
 
-        // const response = await fetch("http://localhost:8080/api/v1/faceSwap", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({
-        //     target: file,
-        //     source: sourcePhoto,
-        //   }),
-        // });
+        const app_info = await app.view_api();
+
+        console.log(app_info);
+        // console.log(file_target);
+        // console.log(file_source);
+
+        // const result = await app.predict("/run_inference", [
+        //   targetBlob, // blob in 'Target' Image component
+        //   sourceBlob, // blob in 'Source' Image component
+        //   0, // number (numeric value between 0 and 100) in 'Anonymization ratio (%)' Slider component
+        //   0, // number (numeric value between 0 and 100) in 'Adversarial defense ratio (%)' Slider component
+        //   // undefined  in 'Mode' Checkboxgroup component
+        // ]);
+        // // const response = await fetch("http://localhost:8080/api/v1/faceSwap", {
+        // //   method: "POST",
+        // //   headers: {
+        // //     "Content-Type": "application/json",
+        // //   },
+        // //   body: JSON.stringify({
+        // //     target: file,
+        // //     source: sourcePhoto,
+        // //   }),
+        // // });
         console.log("the output image");
-        console.log(result.data);
-        // await response.json();
-        alert("Success");
-        navigate("/Home");
+        // console.log(result.data);
+
+        // alert("Success");
+        navigate("/Gallery");
       } catch (err) {
-        console.log("error");
+        console.log("error for uploading ");
         console.log(err);
-        console.log(err.message);
+        // console.log(err.message);
         // alert(err);
       } finally {
         setLoading(false);
-        setFile(null);
+        setImage(null);
         dispatch(setClickedDiv(null));
       }
     } else {
@@ -116,12 +161,20 @@ const Model = () => {
           </div>
         </div>
         <h1 className="mt-5 font-extrabold text-[#222328 text-[32px]">
+          Upload Target Image
+        </h1>
+        <div>
+          <h2>Add your Target Image:</h2>
+          <input type="file" onChange={handleTargetImage} />
+          {/* <img src={image} /> */}
+        </div>
+        <h1 className="mt-5 font-extrabold text-[#222328 text-[32px]">
           Select Source
         </h1>
         <div>
           <h2>Add your personal Image:</h2>
-          <input type="file" onChange={handleChange} />
-          <img src={file} />
+          <input type="file" onChange={handleFileChange} />
+          <img src={image} />
         </div>
       </div>
       <button

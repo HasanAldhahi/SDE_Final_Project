@@ -35,9 +35,6 @@ function Home() {
   };
 
   const RenderCards = ({ data, title }) => {
-    console.log("this is allPosts ", allPosts);
-    console.log("this is the data", data);
-
     if (data?.length > 0) {
       return data.map((post) => <Card key={post._id} {...post}></Card>);
     }

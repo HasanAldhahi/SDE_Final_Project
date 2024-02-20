@@ -12,6 +12,8 @@ export function getRandomPrompt(prompt){
 
 export async function downloadImage(_id, photo){
 
-    FileSaver.saveAs('photo', `download-${_id}.jpeg`);
+    // FileSaver.saveAs("https://httpbin.org/image", "image.jpg");
+
+    FileSaver.saveAs(photo, `download-${_id}.jpg`);
 
 }

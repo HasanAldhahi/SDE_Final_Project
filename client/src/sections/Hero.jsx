@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Hero = () => {
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
   return (
     <>
       <section
@@ -15,25 +17,27 @@ const Hero = () => {
                 data-wow-delay=".2s"
               >
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black  sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                Cutting-Edge SEO Marketing and Website Design Solutions
+                  Create an awesome profile picture for free
                 </h1>
                 <p className="dark:text-body-color-dark mb-12 text-base !leading-relaxed text-body-color sm:text-lg md:text-xl">
-                  Fly and elevate your online presence with our comprehensive SaaS platform, 
-                  designed to drive exceptional results. Our streamlined SEO marketing and 
-                  website design solutions empower you to optimize your digital strategy effortlessly. 
+                  Upload your photo and instantly create hundreds of
+                  professional profile pictures with AI to showcase your best
+                  self online. Choose from business headshot styles for
+                  LinkedIn, CVs, and resumes, or creative flair for Instagram
+                  and messaging
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
-                    to ="#"
-                    className="rounded-sm bg-primary px-8 py-4 text-base font-semibold  duration-300 ease-in-out hover:bg-primary/80"
+                    onClick={loginWithRedirect}
+                    className="rounded-sm bg-primary px-8 py-4 text-base hover:bg-green-300/90 font-semibold  duration-300 ease-in-out hover:bg-primary/80"
                   >
-                      See Plans
+                    Create
                   </Link>
                   <Link
-                    to ="https://github.com/Seyma44"
-                    className="inline-block rounded-sm bg-black px-8 py-4 text-base font-semibold  duration-300 ease-in-out hover:bg-black/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
+                    onClick={loginWithRedirect}
+                    className="inline-block rounded-sm  px-8 py-4 text-base font-semibold  duration-300 ease-in-out hover:bg-green-300/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
                   >
-                    Explore Demos
+                    Explore Demo
                   </Link>
                 </div>
               </div>
@@ -41,13 +45,13 @@ const Hero = () => {
           </div>
         </div>
         <div className="absolute right-0 top-0 z-[-1] opacity-30 lg:opacity-100">
-        <svg
-          width="550"
-          height="656"
-          viewBox="0 0 450 556"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+          <svg
+            width="550"
+            height="656"
+            viewBox="0 0 450 556"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <polygon
               points="327,163 361.2,206.1 419.5,206.1 378.5,261.3 404.8,326 327,294 249.2,326 275.5,261.3 234.5,206.1 292.8,206.1"
               fill="url(#paint0_linear_25:217)"
@@ -61,7 +65,7 @@ const Hero = () => {
               points="277,63 291.2,86.1 319.5,86.1 298.5,105.3 304.8,133 277,117 249.2,133 255.5,105.3 234.5,86.1 262.8,86.1"
               fill="url(#paint0_linear_25:217)"
             />
-        
+
             <polygon
               points="277,63 291.2,86.1 319.5,86.1 298.5,105.3 304.8,133 277,117 249.2,133 255.5,105.3 234.5,86.1 262.8,86.1"
               fill="url(#paint0_linear_25:217)"
@@ -105,83 +109,82 @@ const Hero = () => {
               transform="rotate(133.319 191.659 302.659)"
               fill="url(#paint6_linear_25:217)"
             />
-          <polygon
-            opacity="0.8"
-            points="191.659,302.659 204.273,319.298 231.099,319.298 210.986,333.92 221.128,361.317 191.659,346.678 162.189,361.317 172.331,333.92 152.218,319.298 179.044,319.298"
-            transform="rotate(133.319 191.659 302.659)"
-            fill="url(#paint6_linear_25:217)"
+            <polygon
+              opacity="0.8"
+              points="191.659,302.659 204.273,319.298 231.099,319.298 210.986,333.92 221.128,361.317 191.659,346.678 162.189,361.317 172.331,333.92 152.218,319.298 179.044,319.298"
+              transform="rotate(133.319 191.659 302.659)"
+              fill="url(#paint6_linear_25:217)"
             />
-          <defs>
-            <linearGradient
-              id="paint0_linear_25:217"
-              x1="-54.5003"
-              y1="-178"
-              x2="222"
-              y2="288"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#234233" />
-              <stop offset="1" stopColor="#234233" stopOpacity="0" />
-            </linearGradient>
-          
-            <radialGradient
-              id="paint2_radial_25:217"
-              cx="0"
-              cy="0"
-              r="1"
-              gradientUnits="userSpaceOnUse"
-              gradientTransform="translate(76.9997 288) rotate(90) scale(34)"
-            >
-              <stop offset="0.145833" stopColor="#234233" stopOpacity="0" />
-              <stop offset="1" stopColor="#234233" stopOpacity="0.08" />
-            </radialGradient>
-            <linearGradient
-              id="paint3_linear_25:217"
-              x1="226.775"
-              y1="-66.1548"
-              x2="292.157"
-              y2="351.421"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#234233" />
-              <stop offset="1" stopColor="#234233" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient
-              id="paint4_linear_25:217"
-              x1="184.521"
-              y1="182.159"
-              x2="184.521"
-              y2="448.882"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#234233" />
-              <stop offset="1" stopColor="white" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient
-              id="paint5_linear_25:217"
-              x1="356"
-              y1="110"
-              x2="356"
-              y2="470"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#234233" />
-              <stop offset="1" stopColor="white" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient
-              id="paint6_linear_25:217"
-              x1="118.524"
-              y1="29.2497"
-              x2="166.965"
-              y2="338.63"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#234233" />
-              <stop offset="1" stopColor="#234233" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
+            <defs>
+              <linearGradient
+                id="paint0_linear_25:217"
+                x1="-54.5003"
+                y1="-178"
+                x2="222"
+                y2="288"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#234233" />
+                <stop offset="1" stopColor="#234233" stopOpacity="0" />
+              </linearGradient>
 
+              <radialGradient
+                id="paint2_radial_25:217"
+                cx="0"
+                cy="0"
+                r="1"
+                gradientUnits="userSpaceOnUse"
+                gradientTransform="translate(76.9997 288) rotate(90) scale(34)"
+              >
+                <stop offset="0.145833" stopColor="#234233" stopOpacity="0" />
+                <stop offset="1" stopColor="#234233" stopOpacity="0.08" />
+              </radialGradient>
+              <linearGradient
+                id="paint3_linear_25:217"
+                x1="226.775"
+                y1="-66.1548"
+                x2="292.157"
+                y2="351.421"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#234233" />
+                <stop offset="1" stopColor="#234233" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient
+                id="paint4_linear_25:217"
+                x1="184.521"
+                y1="182.159"
+                x2="184.521"
+                y2="448.882"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#234233" />
+                <stop offset="1" stopColor="white" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient
+                id="paint5_linear_25:217"
+                x1="356"
+                y1="110"
+                x2="356"
+                y2="470"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#234233" />
+                <stop offset="1" stopColor="white" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient
+                id="paint6_linear_25:217"
+                x1="118.524"
+                y1="29.2497"
+                x2="166.965"
+                y2="338.63"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#234233" />
+                <stop offset="1" stopColor="#234233" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
         <div className="absolute bottom-0 left-0 z-[-1] opacity-30 lg:opacity-100">
           <svg

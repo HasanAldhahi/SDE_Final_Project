@@ -167,8 +167,7 @@ function CreatePost() {
             type="submit"
             className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
-            {console.log("this is for loading", loading)}
-            {loading ? "Sharing..." : "Share with the Community"}
+            {loading ? "Uploading..." : "Upload the image to DataBase"}
           </button>
         </div>
       </form>

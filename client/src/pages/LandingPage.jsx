@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Contact from "../sections/Contact";
 import Hero from "../sections/Hero";
 import Pricing from "../sections/Pricing";
@@ -9,7 +9,7 @@ const LandingPage = () => {
       <Pricing />
       <Contact />
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;

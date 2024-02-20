@@ -12,12 +12,16 @@ const formSlice = createSlice({
     dataList: [],
     status: 'idle',
     divID: null,
+    targetImage: ""
   },
 
   reducers: {
 
     setClickedDiv: (state , action) => {
     state.divID = action.payload
+  },
+  setTargetImage: (state, action) => {
+    state.targetImage = action.payload
   }
 },
 
@@ -47,7 +51,7 @@ export const fetchform = createAsyncThunk('form/fetchform', async () => {
 });
 
 
-export const  {setClickedDiv, setDataName} =  formSlice.actions
+export const  {setClickedDiv, setTargetImage} =  formSlice.actions
 export default formSlice.reducer
 
 

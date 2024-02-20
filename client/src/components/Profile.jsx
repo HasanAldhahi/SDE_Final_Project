@@ -1,4 +1,4 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 // The Profile component renders the user's profile information.
 // The useAuth0 hook provides the user object that contains the user's profile information.
@@ -13,37 +13,32 @@ import { useAuth0 } from '@auth0/auth0-react';
 // - sub: The user's unique identifier
 // ...
 export default function Profile() {
+  // The useAuth0 hook provides the user object that contains the user's profile information.
+  const { user, isAuthenticated } = useAuth0();
 
-    // The useAuth0 hook provides the user object that contains the user's profile information.
-    const { user, isAuthenticated } = useAuth0();
+  // The profile is only rendered if the user is authenticated.
+  if (!user) {
+    return null;
+  }
 
-    // The profile is only rendered if the user is authenticated.
-    if (!user) {
-      return null;
-    }
-
-    // The profile is rendered as an article element. It contains the user's profile picture
-    // and the user's profile information.
-    return (
-        <div>
-            {isAuthenticated ? (
-                <article className="column">
-                    {user?.picture && <img src={user.picture} alt={user?.name} />}
-                    <h2>{user?.name}</h2>
-                    <ul>
-                        {user
-                            ? Object.keys(user).map((objKey, i) => (
-                                <li key={i}>
-                                    {objKey}: {user[objKey]}
-                                </li>
-                            ))
-                            : <li>No user data available</li>
-                        }
-                    </ul>
-                </article>
-            ) : (
-                <div> </div>
-            )}
-        </div>
-    );
+  // The profile is rendered as an article element. It contains the user's profile picture
+  // and the user's profile information.
+  return (
+    <div>
+      {isAuthenticated ? (
+        <article className="column">
+          {user?.picture && (
+            <img
+              src={user.picture}
+              className="rounded-full h-12"
+              alt={user?.name}
+            />
+          )}
+          <h2>{user?.name}</h2>
+        </article>
+      ) : (
+        <div> </div>
+      )}
+    </div>
+  );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { preview } from "../assets";
 import { getRandomPrompt } from "../utils";
-import {Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import { FormField, Loader } from "../components";
 
@@ -39,7 +39,9 @@ function CreatePost() {
           body: JSON.stringify({ prompt: form.prompt }),
         });
         const data = await response.json();
-        setForm({ ...form, dataList: data });
+        console.log("this is the data we need to change");
+        console.log(data);
+        setForm({ ...form, dataList: data.list });
       } catch (error) {
         alert("No results has been found! Try simpler Prompt");
       } finally {
@@ -69,7 +71,7 @@ function CreatePost() {
         console.log(response.json());
         // await response.json();
         alert("Success");
-        navigate("/");
+        navigate("/Model");
       } catch (err) {
         alert("error ", err);
       } finally {
@@ -116,10 +118,13 @@ function CreatePost() {
             handleSurpriseMe={handleSurpriseMe}
           />
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
-            {console.log("ths si the photo that u were wanting it ")}
+            {console.log(
+              "ths si the photo that u were wanting it ",
+              form.dataList?.link
+            )}
             {form.dataList ? (
               <img
-                src={form.dataList.list[0].link}
+                src={form.dataList.link}
                 alt={form.prompt}
                 className="w-full h-full object-contain"
               />
@@ -147,10 +152,10 @@ function CreatePost() {
           >
             {generatingImg ? "Generating..." : "Generate"}
           </button>
-          <Link to= "/Model"
+          {/* <Link to= "/Model"
             className="font-inter font-medium bg-[#6469ff] text-white px-4 py-2 rounded-md">
             Swap the Face with the generated image
-            </Link>
+            </Link> */}
         </div>
 
         <div className="mt-10">
@@ -158,13 +163,13 @@ function CreatePost() {
             ** Once you have created the image you want, you can share it with
             others in the community **
           </p>
-          {/* <button
+          <button
             type="submit"
             className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
             {console.log("this is for loading", loading)}
             {loading ? "Sharing..." : "Share with the Community"}
-          </button> */}
+          </button>
         </div>
       </form>
     </section>

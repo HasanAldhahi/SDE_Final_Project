@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchform } from "../Redux/googleGenerated/formSlice";
 import { Card } from "../components";
 import { setClickedDiv } from "../Redux/googleGenerated/formSlice";
+import { client } from "@gradio/client";
 
 const Model = () => {
   const dispatch = useDispatch();
@@ -55,30 +56,48 @@ const Model = () => {
     if (file && divID) {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:8080/api/v1/post", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            Target: file,
-            source: divID,
-            dataList: form.dataList,
-          }),
-        });
-        console.log(response.json());
+        const source = await sourcePhoto.blob();
+        const file = await file.blob();
+        const app = await client(
+          "https://felixrosberg-face-swap.hf.space/--replicas/cjapv/"
+        );
+        const result = await app.predict("/run_inference", [
+          file, // blob in 'Target' Image component
+          source, // blob in 'Source' Image component
+          0, // number (numeric value between 0 and 100) in 'Anonymization ratio (%)' Slider component
+          0, // number (numeric value between 0 and 100) in 'Adversarial defense ratio (%)' Slider component
+          ["Compare"], // undefined  in 'Mode' Checkboxgroup component
+        ]);
+
+        // const response = await fetch("http://localhost:8080/api/v1/faceSwap", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({
+        //     target: file,
+        //     source: sourcePhoto,
+        //   }),
+        // });
+        console.log("the output image");
+        console.log(result.data);
         // await response.json();
         alert("Success");
         navigate("/Home");
       } catch (err) {
-        alert("error ", err);
+        console.log("error");
+        console.log(err);
+        console.log(err.message);
+        // alert(err);
       } finally {
         setLoading(false);
         setFile(null);
         dispatch(setClickedDiv(null));
       }
     } else {
-      alert("Please enter a prompt to generate an image");
+      alert(
+        "Please Select one of the target photos or upload the source Image"
+      );
     }
   };
 

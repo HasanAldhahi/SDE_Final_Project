@@ -33,12 +33,14 @@ router.route('/').post(async (req, res) => {
                 // Add other parameters as needed
             }})
         // console.log(response.data.items)
-        let myList = []
-        for(let i = 0; i< 4; i++){
-            myList.push(response.data.items[i])
+        // let myList = []
+        // for(let i = 0; i< 4; i++){
+        //     myList.push(response.data.items[i])
 
-        }
-        res.status(200).json({list: myList});
+        // }
+        console.log("this is the response")
+        console.log( response.data.items[0])
+        res.status(200).json({list: response.data.items[0]});
     }
 
     catch(error) {

@@ -6,6 +6,7 @@ import connectDB from "./mongodb/connect.js"
 
 import postRoutes from "./routes/postRoutes.js"
 import dalleRoutes from "./routes/dalleRoutes.js"
+import faceSwapRoutes  from "./routes/faceSwapRoutes.js"
 
 
 //pull the environment variables 
@@ -25,6 +26,7 @@ app.use(express.json({limit: '50mb'}));
 
 app.use('/api/v1/post', postRoutes)
 app.use('/api/v1/dalle', dalleRoutes)
+app.use("/api/v1/faceSwap", faceSwapRoutes)
 
 //set the Routes 
 app.get('/', async(req,res) => {

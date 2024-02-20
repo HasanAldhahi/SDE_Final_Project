@@ -146,5 +146,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@gradio/client": "^0.12.1"
+  }
 }

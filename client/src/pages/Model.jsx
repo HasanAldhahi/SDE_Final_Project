@@ -70,6 +70,7 @@ const Model = () => {
   const handleGenerate = async (e) => {
     e.preventDefault();
     console.log("we are inside generate");
+
     console.log(dataList.data);
     const dataWithRightID = dataList.data.filter((data) => data._id === divID);
     const sourcePhoto = dataWithRightID[0]?.dataList[0].link;
@@ -77,22 +78,61 @@ const Model = () => {
     console.log("this is the source photo");
     console.log(sourcePhoto);
     console.log("this is the file u uploaded ", image);
+
+    try {
+      const response1 = await fetch(image, {
+        headers: { "content-type": "multipart/form-data" },
+      });
+      const sourceBlob = await response1.blob();
+      console.log("finished with blob 1", sourceBlob);
+
+      const response2 = await fetch(sourcePhoto, {
+        headers: { "content-type": "multipart/form-data" },
+      });
+      const targetBlob = await response2.blob();
+      console.log("finished with blob 2", targetBlob);
+
+      const List = await fetch(`http://127.0.0.1:5000//upload`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          source: file_source,
+          target: file_target,
+          link_s: image,
+          link_t: sourcePhoto,
+        }),
+      }).then((response) => {
+        // Access and use the response data here
+        if (response.ok) {
+          response = response.json();
+          console.log("list finished spinner off");
+        } else {
+          console.log("There is an error with the response");
+        }
+        return response;
+      });
+    } catch (e) {
+      alert("An error occurred in the post to flask");
+    }
+
     if (image && divID) {
       console.log("we are inside generating the output file");
       setLoading(true);
 
       try {
-        const response1 = await fetch(image, {
-          headers: { "content-type": "multipart/form-data" },
-        });
-        const sourceBlob = await response1.blob();
-        console.log("finished with blob 1", sourceBlob);
+        // const response1 = await fetch(image, {
+        //   headers: { "content-type": "multipart/form-data" },
+        // });
+        // const sourceBlob = await response1.blob();
+        // console.log("finished with blob 1", sourceBlob);
 
-        const response2 = await fetch(sourcePhoto, {
-          headers: { "content-type": "multipart/form-data" },
-        });
-        const targetBlob = await response2.blob();
-        console.log("finished with blob 2", targetBlob);
+        // const response2 = await fetch(sourcePhoto, {
+        //   headers: { "content-type": "multipart/form-data" },
+        // });
+        // const targetBlob = await response2.blob();
+        // console.log("finished with blob 2", targetBlob);
 
         // const result = await handler(blob);
         // const source = await sourcePhoto.blob();

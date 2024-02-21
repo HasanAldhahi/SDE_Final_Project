@@ -1,0 +1,130 @@
+//for the main page 
+<div>
+  <div class="home-img-wrapper flex items-end mx-auto md:m-auto p-4 md:p-0 relative">
+    <div class="home-intro-image z-1">
+      <img class="extend-asset" src="/images/components/mockups/mockup_domain.png" alt="" role="none">
+        <div class="logo-image relative flex flex-col absolute logo-page-mockup-domain-laptop w-full h-full">
+      <div class="logo-mockup flex max-w-full max-h-full m-auto  " aria-label="Logo">
+          <img class="logo-img" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/229/8832041229_95609b05-7be4-460b-a5d7-46f301f490af.png?cb=1707762428" alt="" role="none">
+              </div>
+    <div class="absolute bg-transparent h-full w-full"></div>
+  </div>
+
+        <div class="logo-image relative flex flex-col absolute logo-page-mockup-domain-screen w-full h-full">
+      <div class="logo-mockup flex max-w-full max-h-full m-auto  " aria-label="Logo">
+          <img class="logo-img" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/229/8832041229_95609b05-7be4-460b-a5d7-46f301f490af.png?cb=1707762428" alt="" role="none">
+              </div>
+    <div class="absolute bg-transparent h-full w-full"></div>
+  </div>
+
+    </div>
+    <div class="absolute mx-auto w-full h-full">
+      <svg viewBox="0 -180 145 200" width="100%" height="100%">
+        <defs>
+  <filter id="themeColor" color-interpolation-filters="sRGB" type="matrix">
+    <feColorMatrix values="0 0 0 0 0.22745098039215686,0 0 0 0 0.6196078431372549,0 0 0 0 0.24313725490196078,0 0 0 1 0" type="matrix"></feColorMatrix>
+  </filter>
+</defs>
+<image class="apply-filter main-bubble w-full" xlink:href="/images/components/mockups/mockup_logo_bubble.png" x="0" y="0"></image>
+
+
+      </svg>
+    </div>
+  </div>
+</div>
+
+
+//for the avertisement
+
+
+<div class="py-2 md:py-5 md:px-6 mx-auto items-center">
+    <div class="hidden md:block">
+      <div class="hidden md:block">
+  <div class="flex flex-col justify-center pt-2 md:pt-10 mx-auto items-center">
+    <span class="md:text-xl text-bp-base-brand">
+      Print your
+    </span>
+    <span class="text-xl md:text-4xl font-bold font-gazpacho">
+      Merchandise
+    </span>
+  </div>
+</div>
+
+    </div>
+    <div class="md:px-28">
+  <div class="home-img-wrapper flex items-end mx-auto md:m-auto p-4 md:p-0 relative">
+    <div class="home-intro-image z-1">
+      <img class="extend-asset" src="/images/components/mockups/mockup_merchandise.png" alt="" role="none">
+        <div class="logo-image relative flex flex-col absolute logo-page-mockup-merchandise-cup w-full h-full">
+      <div class="logo-mockup flex max-w-full max-h-full m-auto  " aria-label="Logo">
+          <img class="logo-img" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/229/8832041229_95609b05-7be4-460b-a5d7-46f301f490af.png?cb=1707762428" alt="" role="none">
+              </div>
+    <div class="absolute bg-transparent h-full w-full"></div>
+  </div>
+
+        <div class="logo-image relative flex flex-col absolute logo-page-mockup-merchandise-tshirt w-full h-full">
+      <div class="logo-mockup flex max-w-full max-h-full m-auto  " aria-label="Logo">
+          <img class="logo-img" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/229/8832041229_95609b05-7be4-460b-a5d7-46f301f490af.png?cb=1707762428" alt="" role="none">
+              </div>
+    <div class="absolute bg-transparent h-full w-full"></div>
+  </div>
+
+        <div class="logo-image relative flex flex-col absolute logo-page-mockup-merchandise-bag w-full h-full">
+      <div class="logo-mockup flex max-w-full max-h-full m-auto  " aria-label="Logo">
+          <img class="logo-img" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/229/8832041229_95609b05-7be4-460b-a5d7-46f301f490af.png?cb=1707762428" alt="" role="none">
+              </div>
+    <div class="absolute bg-transparent h-full w-full"></div>
+  </div>
+
+        <div class="logo-image relative flex flex-col absolute logo-page-mockup-merchandise-cap w-full h-full">
+      <div class="logo-mockup flex max-w-full max-h-full m-auto  " aria-label="Logo">
+          <img class="logo-img" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/229/8832041229_95609b05-7be4-460b-a5d7-46f301f490af.png?cb=1707762428" alt="" role="none">
+              </div>
+    <div class="absolute bg-transparent h-full w-full"></div>
+  </div>
+
+        <div class="logo-image relative flex flex-col absolute logo-page-mockup-merchandise-bottle w-full h-full">
+      <div class="logo-mockup flex max-w-full max-h-full m-auto  " aria-label="Logo">
+          <img class="logo-img" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/229/8832041229_95609b05-7be4-460b-a5d7-46f301f490af.png?cb=1707762428" alt="" role="none">
+              </div>
+    <div class="absolute bg-transparent h-full w-full"></div>
+  </div>
+
+    </div>
+    <div class="absolute mx-auto w-full h-full">
+      <svg viewBox="-100 -190 145 200" width="100%" height="100%">
+        <defs>
+  <filter id="themeColor" color-interpolation-filters="sRGB" type="matrix">
+    <feColorMatrix values="0 0 0 0 0.22745098039215686,0 0 0 0 0.6196078431372549,0 0 0 0 0.24313725490196078,0 0 0 1 0" type="matrix"></feColorMatrix>
+  </filter>
+</defs>
+<image class="apply-filter merchandise-card-bubble w-full" xlink:href="/images/components/mockups/mockup_logo_bubble.png" x="0" y="0"></image>
+
+
+      </svg>
+    </div>
+    <div class="hidden md:block absolute w-full h-full z-1 opacity-30">
+      <svg viewBox="-6 -135 156 200" width="100%" height="100%">
+        <defs>
+  <filter id="themeColor" color-interpolation-filters="sRGB" type="matrix">
+    <feColorMatrix values="0 0 0 0 0.22745098039215686,0 0 0 0 0.6196078431372549,0 0 0 0 0.24313725490196078,0 0 0 1 0" type="matrix"></feColorMatrix>
+  </filter>
+</defs>
+<image class="apply-filter  w-full" xlink:href="/images/components/mockups/mockup_merchandise_mask.png" x="0" y="0"></image>
+
+
+      </svg>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+
+
+
+
+
+
+
+
